@@ -18,4 +18,5 @@ p {
 }
 body {
   background-image: url('./Img/paper-texture.jpg');
+  background-size: cover;
 }
