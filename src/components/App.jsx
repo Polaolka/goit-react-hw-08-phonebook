@@ -9,8 +9,15 @@ import Home from 'pages/Home';
 import Register from 'pages/Register';
 import Login from 'pages/Login';
 import PhoneBook from 'pages/PhoneBook';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { refreshUser } from 'redux/auth/authOperations';
 
 export default function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
   return (
     <>
       {/* <AppBar /> */}
@@ -18,12 +25,12 @@ export default function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login/>} />
+          <Route path="/login" element={<Login />} />
           <Route path="/phonebook" element={<PhoneBook />} />
         </Route>
       </Routes>
       {/* <Section title="Phonebook"> */}
-        {/* <PhoneBook /> */}
+      {/* <PhoneBook /> */}
       {/* </Section>
       <Section title="Contacts">
         <Filter />

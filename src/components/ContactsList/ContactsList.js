@@ -1,12 +1,12 @@
 import React from 'react';
 import css from '../ContactsList/ContactsList.module.css';
-import { deleteContact } from 'redux/operations';
+import { deleteContact } from 'redux/Contacts/operations';
 import { toast } from 'react-toastify';
-import { selecVisibleContacts } from '../../redux/selectors';
-import { fetchContacts } from "redux/operations";
+import { selectVisibleContacts } from '../../redux/selectors';
+import { fetchContacts } from "redux/Contacts/operations";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectError, selectIsLoading } from "redux/selectors";
+import { selectError, selectIsLoading } from "redux/Contacts/contactsSelectors";
 
 export const ContactsList = () => {
   const dispatch = useDispatch();
@@ -16,8 +16,7 @@ export const ContactsList = () => {
     dispatch(fetchContacts());
   }, [dispatch]);
 
-  const visibleContacts = useSelector(selecVisibleContacts);
-
+  const visibleContacts = useSelector(selectVisibleContacts);
   const handleDelete = contactId => {
     dispatch(deleteContact(contactId));
     toast.error('One contact has been deleted');
@@ -26,10 +25,10 @@ export const ContactsList = () => {
   return (
     <ul className={css.listWrapper}>
       {isLoading && !error && <b>Request in progress...</b>}
-      {visibleContacts.map(({ id, name, phone }) => (
+      {visibleContacts.map(({ id, name, number }) => (
         <li key={id} className={css.contactItem}>
           <p className={css.name}>{name}:</p>
-          <p className={css.number}>{phone}</p>
+          <p className={css.number}>{number}</p>
           <button
             type="button"
             className={css.button}

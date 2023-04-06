@@ -1,27 +1,30 @@
-// import { useEffect } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
+
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Helmet } from 'react-helmet';
-// import { TaskList } from 'components/TaskList/TaskList';
-// import { TaskEditor } from 'components/TaskEditor/TaskEditor';
-// import { fetchTasks } from 'redux/tasks/operations';
-// import { selectLoading } from 'redux/tasks/selectors';
+import { fetchContacts } from 'redux/Contacts/operations';
+import { selectIsLoading } from 'redux/Contacts/contactsSelectors';
+import { ContactsList } from 'components/ContactsList/ContactsList';
+import { PhoneBook } from 'components/PhoneBook/PhoneBook';
+import { Filter } from 'components/Filter/Filter';
 
 export default function Tasks() {
-//   const dispatch = useDispatch();
-//   const isLoading = useSelector(selectLoading);
+  const dispatch = useDispatch();
+  const isLoading = useSelector(selectIsLoading);
 
-//   useEffect(() => {
-//     dispatch(fetchTasks());
-//   }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   return (
     <>
       <Helmet>
-        <title>Your tasks</title>
+        <title>Your contacts</title>
       </Helmet>
-      {/* <TaskEditor /> */}
-      {/* <div>{isLoading && 'Request in progress...'}</div> */}
-      {/* <TaskList /> */}
+      <PhoneBook/>
+      <div>{isLoading && 'Request in progress...'}</div>
+      <Filter/>
+      <ContactsList />
     </>
   );
 }
