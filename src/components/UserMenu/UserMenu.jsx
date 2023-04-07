@@ -1,21 +1,20 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from 'redux/auth/authSelectors';
 import { logOut } from 'redux/auth/authOperations';
-// import { useAuth } from 'hooks';
-// import css from './UserMenu.module.css';
+import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
+import { Button, Wrapper } from './UserMenu.styled';
+import Typography from '@mui/material/Typography';
 
 export const UserMenu = () => {
   const dispatch = useDispatch();
-//   const { user } = useAuth();
-const user = useSelector(selectUser);
+  const user = useSelector(selectUser);
   return (
-    <div >
-      {/* {user.name} */}
-      <p >Welcome, {user.name}</p>
-      {/* onClick={() => dispatch(logOut())} */}
-      <button type="button" onClick={() => dispatch(logOut())}>
-        Log Out
-      </button>
-    </div>
+    <Wrapper>
+      <Typography>Welcome,</Typography>
+      <Typography color="primary" variant="h6"> {user.name}</Typography>
+      <Button type="button" onClick={() => dispatch(logOut())}>
+        <LogoutRoundedIcon />
+      </Button>
+    </Wrapper>
   );
 };

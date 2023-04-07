@@ -26,12 +26,12 @@ const contactsSlice = createSlice({
       .addCase(deleteContact.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.items = state.items.filter(task => task.id !== action.payload.id);
+        state.items = state.items.filter(contact => contact.id !== action.payload.id);
       })
       .addCase(updateContact.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.items = state.items.filter(task => task.id !== action.payload.id);
+        state.items = state.items.map(contact => contact.id === action.payload.id ? action.payload : contact);
       })
 
       .addMatcher(

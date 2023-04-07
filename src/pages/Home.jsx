@@ -1,3 +1,4 @@
+import EmojiPeopleOutlinedIcon from '@mui/icons-material/EmojiPeopleOutlined';
 const styles = {
     container: {
       minHeight: 'calc(100vh - 50px)',
@@ -6,6 +7,10 @@ const styles = {
       justifyContent: 'center',
     },
     title: {
+      color: '#fff',
+      display: 'block',
+      width: '300px',
+      margin: '30px 30px auto auto',
       fontWeight: 500,
       fontSize: 48,
       textAlign: 'center',
@@ -16,9 +21,9 @@ const styles = {
     return (
       <div style={styles.container}>
         <h1 style={styles.title}>
-          Task manager welcome page{' '}
+        Say goodbye to lost phone numbers - with our app!
           <span role="img" aria-label="Greeting icon">
-            💁‍♀️
+            <EmojiPeopleOutlinedIcon fontSize="large"/>
           </span>
         </h1>
       </div>

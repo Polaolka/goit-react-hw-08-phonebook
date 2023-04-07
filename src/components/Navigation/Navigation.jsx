@@ -1,17 +1,17 @@
-import { NavLink } from 'react-router-dom';
-import {NavBox} from './Navigation.styled'
-// import { useAuth } from 'hooks';
-// import css from './Navigation.module.css';
+// import { NavLink } from 'react-router-dom';
+import {NavBox, NavigationLink} from './Navigation.styled'
+import CottageOutlinedIcon from '@mui/icons-material/CottageOutlined';
 
 export const Navigation = () => {
-  //   const { isLoggedIn } = useAuth();
 
   return (
     <NavBox>
-      <NavLink to="/">Home</NavLink>
-      <NavLink to="/phonebook">
+      <NavigationLink to="/">
+        <CottageOutlinedIcon/>
+        </NavigationLink>
+      <NavigationLink to="/phonebook">
         PhoneBook
-      </NavLink>
+      </NavigationLink>
     </NavBox>
   );
 };

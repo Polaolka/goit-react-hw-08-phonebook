@@ -1,42 +1,40 @@
 import { Route, Routes } from 'react-router-dom';
-// import { Section } from './Section/Section';
-// import { ContactsList } from './ContactsList/ContactsList';
-// import { Filter } from './Filter/Filter';
-// import { ToastContainer } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 import Layout from './Layout';
-import Home from 'pages/Home';
-import Register from 'pages/Register';
-import Login from 'pages/Login';
-import PhoneBook from 'pages/PhoneBook';
-import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, lazy } from 'react';
 import { refreshUser } from 'redux/auth/authOperations';
+import { PrivateRoute } from './PrivateRoute';
+import { RestrictedRoute } from './RestrictedRout';
+import { selectIsRefreshing } from 'redux/auth/authSelectors';
+import SkeletonSkeletoView from './Skeleton/Skeleton';
+
+const HomePage = lazy(() => import('../pages/Home'));
+const RegisterPage = lazy(() => import('../pages/Register'));
+const LoginPage = lazy(() => import('../pages/Login'));
+const PhoneBookPage = lazy(() => import('../pages/PhoneBook'));
 
 export default function App() {
+  const isRefreshing = useSelector(selectIsRefreshing);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
-  return (
+  return isRefreshing ? (
+    <SkeletonSkeletoView />
+  ) : (
     <>
-      {/* <AppBar /> */}
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/phonebook" element={<PhoneBook />} />
+          <Route index element={<HomePage />} />
+          <Route path="/register" element={<RestrictedRoute redirectTo="/phonebook" component={<RegisterPage />} />} />
+          <Route path="/login" element={<RestrictedRoute redirectTo="/phonebook" component={<LoginPage />} />} />
+          <Route path="/phonebook" element={<PrivateRoute redirectTo="/login" component={<PhoneBookPage />} />} />
         </Route>
       </Routes>
-      {/* <Section title="Phonebook"> */}
-      {/* <PhoneBook /> */}
-      {/* </Section>
-      <Section title="Contacts">
-        <Filter />
-        <ContactsList />
-      </Section>
-      <ToastContainer autoClose={2500} /> */}
+      <ToastContainer autoClose={2500} />
     </>
   );
 }

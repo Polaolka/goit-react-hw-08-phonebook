@@ -31,6 +31,7 @@ export const Filter = () => {
         type="text"
         value={filter}
         onChange={changeFilter}
+
       />
     </label>
   </form>

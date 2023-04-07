@@ -13,10 +13,13 @@
     margin: 0 auto 10px;
 }
 .paper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin: 0 auto;
     width: 450px;
     min-height: auto;
-    padding: 10px 10px 20px;
+    padding: 20px 10px 20px;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     border-radius: 4px;
     display: flex;
