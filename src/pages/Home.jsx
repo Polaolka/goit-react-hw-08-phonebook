@@ -9,8 +9,8 @@ const styles = {
     title: {
       color: '#fff',
       display: 'block',
-      width: '300px',
-      margin: '30px 30px auto auto',
+      width: '400px',
+      margin: '30px 60px auto auto',
       fontWeight: 500,
       fontSize: 48,
       textAlign: 'center',
