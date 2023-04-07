@@ -11,7 +11,7 @@ export const UserMenu = () => {
   return (
     <Wrapper>
       <Typography>Welcome,</Typography>
-      <Typography color="primary" variant="h6"> {user.name}</Typography>
+      <Typography color="#4a7bd8" fontWeight='bold'> {user.name}</Typography>
       <Button type="button" onClick={() => dispatch(logOut())}>
         <LogoutRoundedIcon />
       </Button>

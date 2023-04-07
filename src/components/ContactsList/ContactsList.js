@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PermContactCalendarRoundedIcon from '@mui/icons-material/PermContactCalendarRounded';
 import css from '../ContactsList/ContactsList.module.css';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import ModeEditOutlinedIcon from '@mui/icons-material/ModeEditOutlined';
@@ -41,6 +42,7 @@ export const ContactsList = () => {
         {isLoading && !error && <b>Request in progress...</b>}
         {sortedVisibleContacts.map(({ id, name, number }) => (
           <li key={id} className={css.contactItem}>
+            <p><PermContactCalendarRoundedIcon color='primary'/></p>
             <p className={css.name}>{name}:</p>
             <p className={css.number}>{number}</p>
             <button
