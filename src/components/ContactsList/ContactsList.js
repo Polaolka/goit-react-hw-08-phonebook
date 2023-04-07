@@ -19,6 +19,9 @@ export const ContactsList = () => {
   const error = useSelector(selectError);
 
   const visibleContacts = useSelector(selectVisibleContacts);
+
+  const sortedVisibleContacts = [...visibleContacts].sort((a, b) => a.name.localeCompare(b.name));
+
   const handleDelete = contactId => {
     dispatch(deleteContact(contactId));
     toast.error('One contact has been deleted');
@@ -36,7 +39,7 @@ export const ContactsList = () => {
       {isEditing && <PhoneBookEditor id={id} name={name} number={number} setIsEditing={setIsEditing}/>}
       <ul className={css.listWrapper}>
         {isLoading && !error && <b>Request in progress...</b>}
-        {visibleContacts.map(({ id, name, number }) => (
+        {sortedVisibleContacts.map(({ id, name, number }) => (
           <li key={id} className={css.contactItem}>
             <p className={css.name}>{name}:</p>
             <p className={css.number}>{number}</p>
